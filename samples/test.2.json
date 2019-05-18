@@ -1,0 +1,11 @@
+{
+  "v.String": {
+    "obj": { "k": "v" },
+    "arr": [ 1, 2 ],
+    "str": "string",
+    "num": 1.234,
+    "true": true,
+    "false": false,
+    "nil": null
+  }
+}
