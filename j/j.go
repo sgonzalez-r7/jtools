@@ -14,6 +14,25 @@ func Decode(r io.Reader) (j interface{}, err error) {
 	return j, nil
 }
 
+func Type (v interface{}) (t string) {
+	switch v.(type) {
+	case map[string]interface{}:
+		t = "[obj]"
+	case []interface{}:
+		t = "[arr]"
+	case string:
+		t = "[str]"
+	case float64:
+		t = "[num]"
+	case bool:
+		t = "[bool]"
+	case nil:
+		t = "[null]"
+	default:
+		t = "[invalid]"
+	}
+	return t
+}
 
 // func IsEmpty(v interface{}) bool {
 // 	switch val := v.(type) {
@@ -29,24 +48,5 @@ func Decode(r io.Reader) (j interface{}, err error) {
 // 		return true
 // 	default:
 // 		return false
-// 	}
-// }
-
-// func Type (v interface{}) string {
-// 	switch v.(type) {
-// 	case map[string]interface{}:
-// 		return "[obj]"
-// 	case []interface{}:
-// 		return "[arr]"
-// 	case string:
-// 		return "[str]"
-// 	case float64:
-// 		return "[num]"
-// 	case bool:
-// 		return "[bool]"
-// 	case nil:
-// 		return "[null]"
-// 	default:
-// 		return fmt.Sprintf("%T", v)
 // 	}
 // }

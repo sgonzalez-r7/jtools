@@ -18,6 +18,10 @@ func (n Node) IsLeaf() bool {
 }
 
 
+func (n Node) Type() string {
+	return Type(n.Branch.value)
+}
+
 // func (n Node) String() string {
 
 // }
