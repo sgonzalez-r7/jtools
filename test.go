@@ -29,7 +29,9 @@ func main() {
 		if !n.IsLeaf() {
 			return
 		}
-		fmt.Println(n.Path.Join("/"), n.Branch, n.Type())
+
+		fmt.Println(n.Path.Slice(`1:`), n.Type())
+
 	})
 
 

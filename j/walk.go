@@ -7,10 +7,10 @@ import (
 type Do = func(n Node)
 
 func Walk(j interface{}, do Do) {
-	n := Node{}
-	n.Branch.value = j
-	n.Path.list = []interface{}{}
-	n.Path.sep = " "
+	n := Node{
+		Branch: branch{j},
+		Path: path{[]interface{}{}, defaultSep},
+	}
 	switch j.(type) {
 	case map[string]interface{}:
 		do(n)
@@ -23,9 +23,10 @@ func Walk(j interface{}, do Do) {
 
 func walkObj(r Node, do Do) {
 	for k, v := range r.Branch.value.(map[string]interface{}) {
-		n := Node{}
-		n.Branch.value = v
-		n.Path.list = append(r.Path.list, k)
+		n := Node{
+			Branch: branch{v},
+			Path: path{append(r.Path.list, k), defaultSep},
+		}
 		switch v.(type) {
 		case map[string]interface{}:
 			do(n)
@@ -41,9 +42,10 @@ func walkObj(r Node, do Do) {
 
 func walkArray(r Node, do Do) {
 	for i, v := range r.Branch.value.([]interface{}) {
-		n := Node{}
-		n.Branch.value = v
-		n.Path.list = append(r.Path.list, i)
+		n := Node{
+			Branch: branch{v},
+			Path: path{append(r.Path.list, i), defaultSep},
+		}
 		switch v.(type) {
 		case map[string]interface{}:
 			do(n)
